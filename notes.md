@@ -5,8 +5,29 @@
   - [x] update fork
 - [ ] questions
 - [ ] suggestions
+  - [ ] optimistic vs pessimistic updates
+    - [ ] optimistic
+      - [ ] on highly successful or reliable apis
+      - [ ] ui update should be minimal (counter for example)
+      - [ ] should be within 2s from backend
+      - [ ] don't do on something like purchase
+  - [ ] avoid resolvers and effect life cycle hooks
 - [ ] vscode
   - [x] installed intellicode
+- [x] m6
+  - [x] adjust api service to throw the error
+  - [x] change cart service to return observable
+  - [x] create actions for addToCartSuccess and addToCartError
+  - [x] create effects for addToCartClicked (and error)
+  - [x] handle addToCartError in reducer as well
+  - [x] handle error in the error effects
+  - [x] updates
+    - [x] api/cart.service.ts
+    - [x] cart/actions.ts
+    - [x] cart.effects.ts
+    - [x] cart.reducer.ts
+    - [x] cart.service.ts
+    - [x] error.effects.ts
 
 ## 1/17/24
 
