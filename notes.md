@@ -1,3 +1,15 @@
+## 1/18/24
+
+- [ ] todo
+  - [x] remove PR from main repo
+  - [x] update fork
+- [ ] questions
+- [ ] suggestions
+- [ ] vscode
+  - [x] installed intellicode
+
+## 1/17/24
+
 - [x] clone app
   - [x] get it running
 - [x] 304 Not Modified
@@ -13,7 +25,7 @@
   - [ ] nested smart components
     - [ ] nested action sending
   - [ ] scaling of actions
-    - [ ] good action hygiene still appropriate?
+    - [x] good action hygiene still appropriate?
     - [ ] actions as state transitions
       - [ ] how much should be aggregated?
   - [ ] how to handle/test lots and lots of actions
@@ -27,9 +39,12 @@
 - [ ] ngrx team
   - [x] alex okrushko, marko stanimirovic, brandon roberts
   - [ ] suggestions
+    - [ ] break up ms like 20 \* 1000
+      - [ ] aka 2 \* 60 \* 60 \* 1000
+      - [ ] can also do 20_000
     - [ ] webpack vs esbuild vs vite (which also uses esbuild)
     - [ ] typescript style guide
-      - [ ] ts.dev
+      - [x] ts.dev
     - [ ] effects
       - [ ] add an explicit return to help with errors
       - [ ] can just add an inject() to each function

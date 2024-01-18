@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { CartService } from '../cart.service';
 import { selectCartItemsCount } from '../cart.selectors';
 
 @Component({
@@ -12,10 +11,5 @@ import { selectCartItemsCount } from '../cart.selectors';
 export class CartIconComponent {
   cartItemsCounter$ = this.store.select(selectCartItemsCount);
 
-  constructor(
-    private readonly cartService: CartService,
-    private readonly store: Store
-  ) {
-    this.cartService.getCartProducts();
-  }
+  constructor(private readonly store: Store) {}
 }

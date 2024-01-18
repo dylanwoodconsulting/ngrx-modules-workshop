@@ -6,7 +6,7 @@ import { CartService } from './cart.service';
 import { cartActions } from './actions';
 import { cartDetailActions } from './cart-details/actions';
 
-const REFRESH_CART_ITEMS_INTERVAL_MS: number = 20000;
+const REFRESH_CART_ITEMS_INTERVAL_MS: number = 20 * 1000; // 20 seconds
 
 export const fetchCartItems = createEffect(
   () => {

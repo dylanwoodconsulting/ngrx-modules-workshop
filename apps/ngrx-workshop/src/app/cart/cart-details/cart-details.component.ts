@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  filter,
-  from,
-  map,
-  mergeMap,
-  Observable,
-  switchMap,
-  toArray,
-} from 'rxjs';
+import { from, map, mergeMap, Observable, switchMap, toArray } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +8,7 @@ import { CartProduct } from '../../model/product';
 import { ProductService } from '../../product/product.service';
 import { CartService } from '../cart.service';
 import { selectCartItems } from '../cart.selectors';
+import { cartDetailActions } from './actions';
 
 @Component({
   selector: 'ngrx-workshop-cart-details',
@@ -26,12 +19,8 @@ export class CartDetailsComponent {
   cartProducts$: Observable<CartProduct[]> = this.store
     .select(selectCartItems)
     .pipe(
-      filter(
-        (cartItems): cartItems is NonNullable<typeof cartItems> =>
-          cartItems != null
-      ),
       switchMap((cartItems) =>
-        from(cartItems).pipe(
+        from(cartItems ?? []).pipe(
           mergeMap((item) =>
             this.productService
               .getProduct(item.productId)
@@ -79,7 +68,7 @@ export class CartDetailsComponent {
       // 👇 really important not to forget to subscribe
       .subscribe((isSuccess) => {
         if (isSuccess) {
-          this.cartService.getCartProducts();
+          this.store.dispatch(cartDetailActions.purchaseSuccess());
           this.router.navigateByUrl('');
         } else {
           this.snackBar.open('Purchase error', 'Error', {
