@@ -4,8 +4,12 @@
   - [x] remove PR from main repo
   - [x] update fork
 - [ ] questions
-  - [ ] should store reflect UI or can it just be api responses and selectors become the view (specifically with VM selector)
+  - [x] should store reflect UI or can it just be api responses and selectors become the view (specifically with VM selector)
+    - [ ] export only what is needed
+    - [ ] no general concerns with "over-memoization"
 - [ ] suggestions
+  - [ ] singular vs plural action naming
+    - [ ] can explicitly say 'single' as opposed to just no 's'
   - [ ] global state suggestions
     - [ ] empty (everything is a feature that gets patched to it)
     - [ ] permissions, feature flags, shared (obv), etc
@@ -39,6 +43,11 @@
   - [x] adjust selector to just re-export productFeature.selectProducts
   - [x] leave the forRoot with empty object and put productFeature into forFeature
   - [x] remove generic from Store in product-list
+- [x] m9
+  - [x] create selectors to get current product id and current product
+  - [x] add action/effect for trigger fetching of current product
+  - [x] reducer for singleProductFetchedSuccess
+  - [x] adjust component to use the selector and dispatch productDetailsActions.pageOpened
 
 ## 1/17/24
 

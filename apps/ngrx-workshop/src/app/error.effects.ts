@@ -12,7 +12,8 @@ export const handleFetchErrors = createEffect(
       ofType(
         productApiActions.productsFetchedError,
         cartActions.fetchCartItemsError,
-        cartActions.addToCartError
+        cartActions.addToCartError,
+        productApiActions.singleProductFetchedError
       ),
       tap(({ errorMessage }) => {
         snackBar.open(errorMessage, 'Error', {

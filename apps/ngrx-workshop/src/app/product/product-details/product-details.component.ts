@@ -1,13 +1,13 @@
+import { selectCurrentProductId } from './../product.selectors';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { BehaviorSubject, filter, map, shareReplay, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, map, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
 import { productDetailsActions } from './actions';
 import { Rating } from '@angular-monorepo/api-interfaces';
+import { selectCurrentProduct } from '../product.selectors';
 
 @Component({
   selector: 'ngrx-workshop-product-details',
@@ -15,32 +15,28 @@ import { Rating } from '@angular-monorepo/api-interfaces';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent {
-  readonly productId$ = this.router.paramMap.pipe(
-    map((params: ParamMap) => params.get('productId')),
-    filter((id: string | null): id is string => id != null),
-    shareReplay({ bufferSize: 1, refCount: true })
-  );
-
-  readonly product$ = this.productId$.pipe(
-    switchMap((id) => this.productService.getProduct(id))
-  );
+  readonly product$ = this.store.select(selectCurrentProduct);
 
   protected customerRating$ = new BehaviorSubject<number | undefined>(
     undefined
   );
 
   constructor(
-    private readonly router: ActivatedRoute,
-    private readonly productService: ProductService,
     private readonly ratingService: RatingService,
     private readonly location: Location,
     private readonly store: Store
   ) {
-    this.productId$
-      .pipe(switchMap((id) => this.ratingService.getRating(id)))
+    this.store
+      .select(selectCurrentProductId)
+      .pipe(
+        filter((id: string | undefined): id is string => id != null),
+        switchMap((id) => this.ratingService.getRating(id))
+      )
       .subscribe((productRating) =>
         this.customerRating$.next(productRating && productRating.rating)
       );
+
+    this.store.dispatch(productDetailsActions.pageOpened());
   }
 
   setRating(productId: string, rating: Rating) {
