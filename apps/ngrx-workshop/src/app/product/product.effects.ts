@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, filter, map, of, switchMap } from 'rxjs';
+import {
+  catchError,
+  exhaustMap,
+  filter,
+  from,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+} from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ProductService } from './product.service';
@@ -8,6 +17,7 @@ import * as productListActions from './product-list/actions';
 import { productApiActions } from './actions';
 import { productDetailsActions } from './product-details/actions';
 import { selectCurrentProductId } from './product.selectors';
+import { cartActions } from '../cart/actions';
 
 @Injectable()
 export class ProductEffects {
@@ -45,7 +55,7 @@ export class ProductEffects {
       concatLatestFrom(() =>
         this.store
           .select(selectCurrentProductId)
-          .pipe(filter((id): id is string => id != null))
+          .pipe(filter((id): id is NonNullable<typeof id> => id != null))
       ),
       switchMap(([, id]) =>
         this.productService.getProduct(id).pipe(
@@ -57,6 +67,30 @@ export class ProductEffects {
               productApiActions.singleProductFetchedError({
                 errorMessage: 'Error Fetching Single Product',
               })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  fetchCartDetailsProducts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(cartActions.fetchCartItemsSuccess),
+      switchMap(({ cartItems }) =>
+        from(cartItems).pipe(
+          mergeMap(({ productId }) =>
+            this.productService.getProduct(productId).pipe(
+              map((product) =>
+                productApiActions.singleProductFetchedSuccess({ product })
+              ),
+              catchError(() =>
+                of(
+                  productApiActions.singleProductFetchedError({
+                    errorMessage: 'Error Fetching Single Product',
+                  })
+                )
+              )
             )
           )
         )

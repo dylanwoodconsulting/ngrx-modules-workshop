@@ -10,7 +10,7 @@ export class CartService {
   }
 
   addProduct(id: string): CartItem[] {
-    if (Math.random() < 0.25) {
+    if (Math.random() < 0.1) {
       throw new HttpException('cart failed', HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

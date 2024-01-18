@@ -16,7 +16,7 @@ function stripDescription(originalData: Product[]): BasicProduct[] {
 @Injectable()
 export class ProductService {
   getProductList(): BasicProduct[] {
-    if (Math.random() < 0.25) {
+    if (Math.random() < 0.1) {
       throw new HttpException(
         'products failed',
         HttpStatus.INTERNAL_SERVER_ERROR
@@ -27,6 +27,13 @@ export class ProductService {
   }
 
   getProduct(id: string): Product {
+    if (Math.random() < 0.1) {
+      throw new HttpException(
+        'products failed',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
+    }
+
     const product = data.find((p) => p.id === id);
     if (!product) {
       throw new NotFoundException(`Product with id ${id} is not found`);

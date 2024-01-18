@@ -7,7 +7,10 @@
   - [x] should store reflect UI or can it just be api responses and selectors become the view (specifically with VM selector)
     - [ ] export only what is needed
     - [ ] no general concerns with "over-memoization"
+  - [x] testing selectors
+    - [ ] even if tested projector functions, test entire whole
 - [ ] suggestions
+  - [ ] https://dev.to/brandontroberts/maximizing-and-simplifying-component-views-with-ngrx-selectors-286j
   - [ ] singular vs plural action naming
     - [ ] can explicitly say 'single' as opposed to just no 's'
   - [ ] global state suggestions
@@ -48,6 +51,10 @@
   - [x] add action/effect for trigger fetching of current product
   - [x] reducer for singleProductFetchedSuccess
   - [x] adjust component to use the selector and dispatch productDetailsActions.pageOpened
+- [x] m10
+  - [x] create selectCartProducts and selectCartTotal selectors
+  - [x] remove this functionality from the component
+  - [x] create an effect for fetching products
 
 ## 1/17/24
 
