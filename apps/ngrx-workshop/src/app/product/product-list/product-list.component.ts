@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { Rating } from '@angular-monorepo/api-interfaces';
 import { RatingService } from '../rating.service';
 import { ProductModel } from '../../model/product';
-import { GlobalState } from '../product.reducer';
 import * as productActions from './actions';
 import { selectProducts } from '../product.selectors';
 
@@ -21,7 +20,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private readonly ratingService: RatingService,
-    private readonly store: Store<GlobalState>
+    private readonly store: Store
   ) {}
 
   ngOnInit() {

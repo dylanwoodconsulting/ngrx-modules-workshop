@@ -9,10 +9,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
 import { CartIconModule } from './cart/cart-icon/cart-icon.module';
 import { RoutingModule } from './router/routing.module';
-import { productReducer } from './product/product.reducer';
 import { ProductEffects } from './product/product.effects';
 import * as errorEffects from './error.effects';
 import { CartModule } from './cart/cart.module';
+import { productFeature } from './product/product.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,8 @@ import { CartModule } from './cart/cart.module';
     RoutingModule,
     CartIconModule,
     MatToolbarModule,
-    StoreModule.forRoot({ product: productReducer }),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(productFeature),
     StoreDevtoolsModule.instrument({ maxAge: 50 }),
     EffectsModule.forRoot([ProductEffects, errorEffects]),
     CartModule,

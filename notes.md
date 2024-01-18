@@ -6,6 +6,10 @@
 - [ ] questions
   - [ ] should store reflect UI or can it just be api responses and selectors become the view (specifically with VM selector)
 - [ ] suggestions
+  - [ ] global state suggestions
+    - [ ] empty (everything is a feature that gets patched to it)
+    - [ ] permissions, feature flags, shared (obv), etc
+    - [ ] many things either need no state or only local state
   - [ ] optimistic vs pessimistic updates
     - [ ] optimistic
       - [ ] on highly successful or reliable apis
@@ -29,6 +33,12 @@
   - [x] add Router reducer and StoreRouterConnectingModule to the module
   - [x] use RouterState.Minimal
   - [x] add selectors for the state
+- [x] m8
+  - [x] adjust ProductState to not have optional properties (`| undefined` is fine)
+  - [x] push the reducer into createFeature
+  - [x] adjust selector to just re-export productFeature.selectProducts
+  - [x] leave the forRoot with empty object and put productFeature into forFeature
+  - [x] remove generic from Store in product-list
 
 ## 1/17/24
 
