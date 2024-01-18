@@ -32,18 +32,13 @@ export const productFeature = createFeature({
       products: productAdaptor.upsertMany(products, state.products),
       productsRequestStatus: LoadingState.FULFILLED,
     })),
-    on(
-      productApiActions.productsFetchedError,
-      productApiActions.singleProductFetchedError,
-      (state, { errorMessage }) => ({
-        ...state,
-        productsRequestStatus: { errorMessage },
-      })
-    ),
+    on(productApiActions.productsFetchedError, (state, { errorMessage }) => ({
+      ...state,
+      productsRequestStatus: { errorMessage },
+    })),
     on(productApiActions.singleProductFetchedSuccess, (state, { product }) => ({
       ...state,
       products: productAdaptor.upsertOne(product, state.products),
-      productsRequestStatus: LoadingState.FULFILLED,
     }))
   ),
 });

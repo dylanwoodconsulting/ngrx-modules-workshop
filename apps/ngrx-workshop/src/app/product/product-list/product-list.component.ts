@@ -4,7 +4,6 @@ import { Store, createSelector } from '@ngrx/store';
 
 import { Rating } from '@angular-monorepo/api-interfaces';
 import { RatingService } from '../rating.service';
-import { ProductModel } from '../../model/product';
 import * as productActions from './actions';
 import { selectProducts } from '../product.selectors';
 import { productFeature } from '../product.reducer';

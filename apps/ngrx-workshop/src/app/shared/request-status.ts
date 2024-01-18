@@ -14,7 +14,7 @@ export type RequestStatus = LoadingState | ErrorState;
 
 /** Helper function to extract error, if there is one. */
 export function getErrorMessage(callState: RequestStatus): string | undefined {
-  if ((callState as ErrorState).errorMessage !== undefined) {
+  if ((callState as ErrorState).errorMessage != null) {
     return (callState as ErrorState).errorMessage;
   }
 
