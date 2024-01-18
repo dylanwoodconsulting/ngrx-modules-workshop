@@ -8,6 +8,7 @@ export const cartActions = createActionGroup({
     timerTick: emptyProps(),
     fetchCartItemsSuccess: props<{ cartItems: CartItem[] }>(),
     fetchCartItemsError: props<{ errorMessage: string }>(),
+
     addToCartSuccess: emptyProps(),
     addToCartError: props<{ productId: string; errorMessage: string }>(),
   },

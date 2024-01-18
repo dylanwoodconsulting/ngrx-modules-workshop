@@ -4,6 +4,7 @@
   - [x] remove PR from main repo
   - [x] update fork
 - [ ] questions
+  - [ ] should store reflect UI or can it just be api responses and selectors become the view (specifically with VM selector)
 - [ ] suggestions
   - [ ] optimistic vs pessimistic updates
     - [ ] optimistic
@@ -12,6 +13,9 @@
       - [ ] should be within 2s from backend
       - [ ] don't do on something like purchase
   - [ ] avoid resolvers and effect life cycle hooks
+  - [ ] router store
+    - [ ] has a corresponding provider for standalone apis
+      - [ ] all ngrx modules have a corresponding
 - [ ] vscode
   - [x] installed intellicode
 - [x] m6
@@ -21,13 +25,10 @@
   - [x] create effects for addToCartClicked (and error)
   - [x] handle addToCartError in reducer as well
   - [x] handle error in the error effects
-  - [x] updates
-    - [x] api/cart.service.ts
-    - [x] cart/actions.ts
-    - [x] cart.effects.ts
-    - [x] cart.reducer.ts
-    - [x] cart.service.ts
-    - [x] error.effects.ts
+- [x] m7
+  - [x] add Router reducer and StoreRouterConnectingModule to the module
+  - [x] use RouterState.Minimal
+  - [x] add selectors for the state
 
 ## 1/17/24
 

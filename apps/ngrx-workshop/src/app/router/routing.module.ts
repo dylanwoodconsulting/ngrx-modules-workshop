@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
 import { CartDetailsComponent } from '../cart/cart-details/cart-details.component';
 import { CartDetailsModule } from '../cart/cart-details/cart-details.module';
@@ -7,6 +9,7 @@ import { ProductDetailsComponent } from '../product/product-details/product-deta
 import { ProductDetailsModule } from '../product/product-details/product-details.module';
 import { ProductListComponent } from '../product/product-list/product-list.component';
 import { ProductListModule } from '../product/product-list/product-list.module';
+import { ROUTER_FEATURE_KEY } from './router.selectors';
 
 const routes: Routes = [
   { path: 'details/:productId', component: ProductDetailsComponent },
@@ -20,6 +23,10 @@ const routes: Routes = [
     ProductListModule,
     CartDetailsModule,
     RouterModule.forRoot(routes),
+    StoreModule.forFeature(ROUTER_FEATURE_KEY, routerReducer),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: ROUTER_FEATURE_KEY,
+    }),
   ],
   exports: [RouterModule],
 })
