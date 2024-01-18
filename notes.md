@@ -10,6 +10,9 @@
   - [x] testing selectors
     - [ ] even if tested projector functions, test entire whole
 - [ ] suggestions
+  - [ ] entityadaptor keeps the list sorted
+    - [ ] keeps a list of sorted ids, pulls from the indexed list to create the sorted array
+  - [ ] no feature flags in reducers
   - [ ] don't store classes and non-serializable data in state
   - [ ] create vm selectors close to the component
   - [ ] do not care what the shape of reducer is (abstracted out and away)
@@ -63,6 +66,11 @@
 - [x] m11
   - [x] create entities in reducer
   - [x] switch them in selectors
+- [x] m12
+  - [x] create request status
+  - [x] adjust ProductState and reducer
+  - [x] adjust ProductList component and template
+  - [x] MatProgressBarModule (added to module)
 
 ## 1/17/24
 
