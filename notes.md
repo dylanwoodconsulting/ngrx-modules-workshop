@@ -10,6 +10,11 @@
   - [x] testing selectors
     - [ ] even if tested projector functions, test entire whole
 - [ ] suggestions
+  - [ ] don't store classes and non-serializable data in state
+  - [ ] create vm selectors close to the component
+  - [ ] do not care what the shape of reducer is (abstracted out and away)
+  - [ ] actions and selectors are the api into ngrx
+  - [ ] prefer single action with lots of payload info to multiple actions being dispatched from an effect
   - [ ] https://dev.to/brandontroberts/maximizing-and-simplifying-component-views-with-ngrx-selectors-286j
   - [ ] singular vs plural action naming
     - [ ] can explicitly say 'single' as opposed to just no 's'
@@ -55,6 +60,9 @@
   - [x] create selectCartProducts and selectCartTotal selectors
   - [x] remove this functionality from the component
   - [x] create an effect for fetching products
+- [x] m11
+  - [x] create entities in reducer
+  - [x] switch them in selectors
 
 ## 1/17/24
 

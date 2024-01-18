@@ -1,14 +1,18 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 
 import { ProductModel } from '../model/product';
 import { productApiActions } from './actions';
 
-interface ProductState {
-  products: ProductModel[] | undefined;
+export interface ProductState {
+  products: EntityState<ProductModel>;
 }
 
+export const productAdaptor: EntityAdapter<ProductModel> =
+  createEntityAdapter();
+
 const initialState: ProductState = {
-  products: undefined,
+  products: productAdaptor.getInitialState(),
 };
 
 export const productFeature = createFeature({
@@ -16,30 +20,13 @@ export const productFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(productApiActions.productsFetchedSuccess, (state, { products }) => ({
-      ...state,
-      products: [...products],
+      products: productAdaptor.upsertMany(products, state.products),
     })),
     on(productApiActions.productsFetchedError, (state) => ({
-      ...state,
-      products: [],
+      products: productAdaptor.setAll([], state.products),
     })),
-    on(productApiActions.singleProductFetchedSuccess, (state, { product }) => {
-      const productsClone = state.products ? [...state.products] : [];
-      const indexOfProduct = productsClone.findIndex(
-        (p) => p.id === product.id
-      );
-
-      // Remove old one and replace with single product fetch
-      if (indexOfProduct < 0) {
-        productsClone.push(product);
-      } else {
-        productsClone.splice(indexOfProduct, 1, product);
-      }
-
-      return {
-        ...state,
-        products: productsClone,
-      };
-    })
+    on(productApiActions.singleProductFetchedSuccess, (state, { product }) => ({
+      products: productAdaptor.upsertOne(product, state.products),
+    }))
   ),
 });

@@ -1,32 +1,36 @@
-<ng-container *ngIf="cartDetailsVm$ | async as cartDetailsVm; else loading">
-  <ng-container *ngIf="cartDetailsVm.products; else noProducts">
-    <mat-card *ngFor="let product of cartDetailsVm.products">
-      <mat-card-content>
-        <img [src]="product.url" />
-        <div class="fill">
-          <mat-card-title>{{ product.title }}</mat-card-title>
-          <mat-card-subtitle
-            >Quantity: {{ product.quantity }}</mat-card-subtitle
-          >
-        </div>
-        <div class="details">
-          <div>Price: {{ product.price | currency }}</div>
-          <button mat-button (click)="removeOne(product.id)">Remove</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-    <footer>
-      <button type="button" mat-button (click)="removeAll()">Remove All</button>
-      <div class="fill"></div>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="purchase(cartDetailsVm.products)"
-      >
-        Purchase
-      </button>
-      <div class="total">Total: {{ cartDetailsVm.total || 0 | currency }}</div>
-    </footer>
+<ng-container *ngIf="cartDetailsVm$ | async as vm">
+  <ng-container *ngIf="vm.products as cartProducts; else loading">
+    <ng-container *ngIf="cartProducts; else noProducts">
+      <mat-card *ngFor="let product of cartProducts">
+        <mat-card-content>
+          <img [src]="product.url" />
+          <div class="fill">
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle
+              >Quantity: {{ product.quantity }}</mat-card-subtitle
+            >
+          </div>
+          <div class="details">
+            <div>Price: {{ product.price | currency }}</div>
+            <button mat-button (click)="removeOne(product.id)">Remove</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <footer>
+        <button type="button" mat-button (click)="removeAll()">
+          Remove All
+        </button>
+        <div class="fill"></div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="purchase(cartProducts)"
+        >
+          Purchase
+        </button>
+        <div class="total">Total: {{ vm.total || 0 | currency }}</div>
+      </footer>
+    </ng-container>
   </ng-container>
 </ng-container>
 

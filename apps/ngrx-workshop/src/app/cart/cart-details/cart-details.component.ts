@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, createSelector } from '@ngrx/store';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CartProduct } from '../../model/product';
 import { CartService } from '../cart.service';
-import { cartDetailsVm } from '../cart.selectors';
+import { selectCartProducts, selectCartTotal } from '../cart.selectors';
 import { cartDetailActions } from './actions';
+
+const cartDetailsVm = createSelector({
+  products: selectCartProducts,
+  total: selectCartTotal,
+});
 
 @Component({
   selector: 'ngrx-workshop-cart-details',

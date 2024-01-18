@@ -48,8 +48,3 @@ export const selectCartTotal = createSelector(
       0
     )
 );
-
-export const cartDetailsVm = createSelector({
-  products: selectCartProducts,
-  total: selectCartTotal,
-});

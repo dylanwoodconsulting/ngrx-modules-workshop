@@ -1,17 +1,27 @@
 import { createSelector } from '@ngrx/store';
 
 import { selectRouterParam } from '../router/router.selectors';
-import { productFeature } from './product.reducer';
-
-export const selectProducts = productFeature.selectProducts;
+import { productAdaptor, productFeature } from './product.reducer';
 
 export const selectCurrentProductId = selectRouterParam('productId');
 
+const { selectAll, selectEntities } = productAdaptor.getSelectors();
+
+export const selectProducts = createSelector(
+  productFeature.selectProducts,
+  selectAll
+);
+
+const selectProductsDictionary = createSelector(
+  productFeature.selectProducts,
+  selectEntities
+);
+
 export const selectCurrentProduct = createSelector(
-  selectProducts,
+  selectProductsDictionary,
   selectCurrentProductId,
   (products, id) => {
     if (id == null || !products) return undefined;
-    return products.find((p) => p.id === id);
+    return products[id];
   }
 );
