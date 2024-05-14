@@ -1,3 +1,8 @@
+## 1/19/24
+
+- [ ] questions
+- [ ] suggestions
+
 ## 1/18/24
 
 - [ ] todo
@@ -10,6 +15,12 @@
   - [x] testing selectors
     - [ ] even if tested projector functions, test entire whole
 - [ ] suggestions
+  - [ ] signal -> select -> selectSignal
+  - [ ] standalone
+    - [ ] main.ts bootstrap provide
+      - [ ] provideState, provideEffects
+      - [ ] as opposed to component providers
+    - [ ] can also provide in routes providers (lazy-loaded)
   - [ ] entityadaptor keeps the list sorted
     - [ ] keeps a list of sorted ids, pulls from the indexed list to create the sorted array
   - [ ] no feature flags in reducers
